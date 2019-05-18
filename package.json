@@ -1,0 +1,11 @@
+{
+  "name": "kronos",
+  "version": "0.1.0",
+  "description": "Time table utility for JIIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ujjwal Sharma <usharma1998@gmail.com>",
+  "license": "MIT"
+}
