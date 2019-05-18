@@ -1,6 +1,8 @@
+const fs = require('fs');
 const xlsx = require('xlsx');
 
-const book = xlsx.readFile('data/sample.xls');
+console.log('Reading XLS file')
+const book = xlsx.readFile(process.argv[2]);
 const sheetName = book.SheetNames[0];
 const sheet = book.Sheets[sheetName];
 
@@ -26,6 +28,7 @@ const keys = Object.keys(sheet).filter(key => key.match(/[A-Z][0-9]+/g));
 const classes = [];
 const subjects = {};
 
+console.log('Parsing file contents');
 keys.forEach(key => {
   const { row, column } = getRowColumn(key);
   const val = querySheet(key);
@@ -53,5 +56,6 @@ keys.forEach(key => {
   }
 });
 
-console.log(classes);
-console.log(subjects);
+console.log('Dumping results')
+fs.writeFileSync(process.argv[3], JSON.stringify(classes));
+fs.writeFileSync(process.argv[4], JSON.stringify(subjects));
